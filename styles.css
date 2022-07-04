@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+
+:root {
+    /* level of layers */
+  --level-one: translateZ(3rem);
+  --level-two: translateZ(6rem);
+  --level-three: translateZ(9rem);
+  
+  --fw-normal: 400;
+  --fw-bold: 700;
+  
+  --clr: #b7c9e5;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+.container {
+    width: 400px;
+}
+
+.card-content {
+    text-align: center;
+    position: relative;
+    padding: 15em 5em;
+    transition: transform 3s;
+    transform-style: preserve-3d;
+}
+.container:hover .card-content {
+    transform: rotateY(.5turn); /* 180deg turn */
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    top: 0; /* these give full width of parent */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform-style: preserve-3d;
+    display: grid;
+    /* place-items: centers children inside their repective cells */
+    /* place-content: centers children inside the parent */
+    place-content: center;
+    backface-visibility: hidden; /*hides the back of card */
+    /* as the card front and back are taking all the parent 
+    div space thus thepadding is from parent top/bottom and L/R */
+    padding: 5em 3em;
+
+    border-radius: 5px;
+}
+
+.card-front {
+    color: #333;
+    background-color: var(--clr);
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/308367/fair.jpg);
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+.card-front::before {
+    content: '';
+    position: absolute;
+    --spacer : 1em;
+    top: var(--spacer);
+    bottom: var(--spacer);
+    left: var(--spacer);
+    right: var(--spacer);
+    border: 3px solid currentColor;
+    transform: var(--level-one);
+}
+
+.card-title {
+    font-size: 3.5rem;
+    transform: var(--level-three);
+    /* changes order of grid elements */
+    order: 2;
+    text-transform: uppercase;
+}
+
+.card-subtitle {
+    font-size: .75rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 4px;
+    opacity: .7;
+    text-transform: uppercase;
+    transform: var(--level-two);
+}
+
+/* card back-side */
+.card-body {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-weight: var(--fw-normal);
+    transform: var(--level-two);
+}
+.card-back {
+    transform: rotateY(.5turn);
+    color: var(--clr);
+    background: #333;
+}
