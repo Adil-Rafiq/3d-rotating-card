@@ -107,3 +107,17 @@ body {
     color: var(--clr);
     background: #333;
 }
+
+
+
+/* ------------------------------------------------------ */
+@media screen and (max-width: 420px) {
+    .container {
+        width: 80%;
+    }
+    .card-content {
+        --padding: 60vw;
+        padding-top: var(--padding);
+        padding-bottom: var(--padding);
+    }
+}
